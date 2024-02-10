@@ -1,8 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const mongoose = require('mongoose');
 const connectDB = require('./config/db');
-// const taskRoutes = require('./routes/taskRoutes');
+const taskRoutes = require('./routes/taskRoutes');
 
 // Configure env
 dotenv.config();
@@ -17,7 +16,7 @@ app.use(express.json());
 connectDB();
 
 // Routes
-// app.use('/api/tasks', taskRoutes);
+app.use('/api/tasks', taskRoutes);
 
 // Start server
 app.listen(PORT, () => {
