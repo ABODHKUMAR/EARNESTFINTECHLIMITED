@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
 import taskService from './services/taskService';
-import './App.css';
+
 function App() {
   const [tasks, setTasks] = useState([]);
 
@@ -50,8 +50,8 @@ function App() {
   };
 
   return (
-    <div>
-      <h1>Task Management App</h1>
+    <div style={{ fontFamily: 'Arial, sans-serif', textAlign: 'center', marginTop: '20px' }}>
+      <h1 style={{ color: 'blue' }}>Task Management App</h1>
       <TaskForm onAdd={handleAddTask} />
       <TaskList
         tasks={tasks}
