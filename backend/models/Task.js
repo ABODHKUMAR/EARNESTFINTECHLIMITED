@@ -2,7 +2,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 
 // Define your Sequelize connection
-const sequelize = new Sequelize('task_manager_db', 'root', 'Abodh@2000', {
+const sequelize = new Sequelize('task_manager_db_name', 'root_user_name', 'password_your', {
   host: 'localhost',
   dialect: 'mysql' // Change this according to your SQL database
 });
