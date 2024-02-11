@@ -32,7 +32,7 @@ function App() {
   const handleDeleteTask = async (taskId) => {
     try {
       await taskService.deleteTask(taskId);
-      setTasks(tasks.filter(task => task._id !== taskId));
+      setTasks(tasks.filter(task => task.id !== taskId));
     } catch (error) {
       console.error('Error deleting task:', error);
     }
@@ -42,7 +42,7 @@ function App() {
     try {
       await taskService.updateTask(taskId, { completed });
       setTasks(tasks.map(task =>
-        task._id === taskId ? { ...task, completed: !task.completed } : task
+        task.id === taskId ? { ...task, completed: !task.completed } : task
       ));
     } catch (error) {
       console.error('Error updating task:', error);

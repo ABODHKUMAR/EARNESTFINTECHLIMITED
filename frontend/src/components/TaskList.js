@@ -19,10 +19,10 @@ const TaskList = ({ tasks, onDelete, onUpdate }) => {
               <td className="description-cell">{task.description}</td>
               <td>{task.completed ? 'Completed' : 'Not Completed'}</td>
               <td>
-                <button className="action-button" onClick={() => onUpdate(task._id, !task.completed)}>
+                <button className="action-button" onClick={() => onUpdate(task.id, !task.completed)}>
                   {task.completed ? 'Mark Incomplete' : 'Mark Complete'}
                 </button>
-                <button className="action-button delete-button" onClick={() => onDelete(task._id)}>Delete</button>
+                <button className="action-button delete-button" onClick={() => onDelete(task.id)}>Delete</button>
               </td>
             </tr>
           ))}

@@ -13,6 +13,10 @@ exports.getAllTasks = async (req, res) => {
 // Controller to add a new task
 exports.createTask = async (req, res) => {
     const { title, description } = req.body;
+    // Validate title and description
+    if (!title || !description) {
+        return res.status(400).json({ message: "Title and description are required" });
+    }
     try {
         const newTask = await Task.create({ title, description }); // Use create() to add a new task
         res.status(201).json(newTask);
@@ -25,6 +29,10 @@ exports.createTask = async (req, res) => {
 exports.updateTask = async (req, res) => {
     const { id } = req.params;
     const { completed } = req.body;
+    // Validate completed field
+    if (typeof completed !== 'boolean') {
+        return res.status(400).json({ message: "Completed field must be a boolean value" });
+    }
     try {
         await Task.update({ completed }, { where: { id } }); // Use update() to update a task
         res.json({ message: 'Task updated' });
@@ -36,6 +44,10 @@ exports.updateTask = async (req, res) => {
 // Controller to delete a task
 exports.deleteTask = async (req, res) => {
     const { id } = req.params;
+    // Validate id parameter
+    if (!id) {
+        return res.status(400).json({ message: "Task ID is required" });
+    }
     try {
         await Task.destroy({ where: { id } }); // Use destroy() to delete a task
         res.json({ message: 'Task deleted' });
