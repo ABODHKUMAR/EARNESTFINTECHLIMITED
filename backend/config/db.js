@@ -3,9 +3,9 @@ const mysql = require('mysql');
 const pool = mysql.createPool({
   connectionLimit: 10,
   host: 'localhost',
-  user: 'root',
-  password: 'Abodh@2000',
-  database: 'task_manager_db'
+  user: 'your_username',
+  password: 'Your_password',
+  database: 'task_manager_db_name'
 });
 
 module.exports = pool;
