@@ -1,15 +1,12 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const connectDB = require('./config/db');
+const pool = require('./config/db');
+
 const taskRoutes = require('./routes/taskRoutes');
 
 // Configure env
 dotenv.config();
-
-
-
-
 
 const app = express();
 
@@ -21,8 +18,7 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(express.json());
 
-// MongoDB connection
-connectDB();
+
 
 // Routes
 app.use('/api/tasks', taskRoutes);

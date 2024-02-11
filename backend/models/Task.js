@@ -1,21 +1,42 @@
-const mongoose = require('mongoose');
-const { v4: uuidv4 } = require('uuid');
+// Instead of using Mongoose, we'll create a Sequelize model for SQL
+const { Sequelize, DataTypes } = require('sequelize');
 
-const taskSchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true
-    },
-    description: {
-        type: String,
-        required: true
-    },
-    completed: {
-        type: Boolean,
-        default: false
-    }
+// Define your Sequelize connection
+const sequelize = new Sequelize('task_manager_db', 'root', 'Abodh@2000', {
+  host: 'localhost',
+  dialect: 'mysql' // Change this according to your SQL database
 });
 
-const Task = mongoose.model('Task', taskSchema);
+// Define your SQL model using Sequelize
+const Task = sequelize.define('Task', {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  title: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  description: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  completed: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false
+  }
+});
 
+// Sync the model with the database
+(async () => {
+  try {
+    await sequelize.sync({ force: true }); // This will drop the table and recreate it, use with caution
+    console.log('Database & tables created!');
+  } catch (error) {
+    console.error('Error syncing the database:', error);
+  }
+})();
+
+// Export the Task model
 module.exports = Task;

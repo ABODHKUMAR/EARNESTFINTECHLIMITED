@@ -1,13 +1,11 @@
-const mongoose = require('mongoose');
-const connectDB = async()=>{
-    try{
-        const conn = await mongoose.connect(process.env.MONGO_URL);
-        console.log( `Connected TO Mongodb ${conn.connection.host}`
-        );
-    }
-    catch(error){
-        console.log(`Error in Mongodb ${error}`)
-    }
-}
+const mysql = require('mysql');
 
-module.exports = connectDB;
+const pool = mysql.createPool({
+  connectionLimit: 10,
+  host: 'localhost',
+  user: 'root',
+  password: 'Abodh@2000',
+  database: 'task_manager_db'
+});
+
+module.exports = pool;
